@@ -1,0 +1,42 @@
+version : '2.5'
+services:
+ mongoserver:
+  container_name: db_container
+  image: mongo
+  restart: always
+  tty: true
+  stdin_open: true
+  ports:
+    - 27017:27017
+  volumes:
+    - mongo_db:/data/db
+    - /home/app/db:/home:z
+  networks: 
+    - mynet   
+  command: mongod  
+
+ node:
+  container_name: node_container
+  image: prince180294/nodeapp:latest
+  stdin_open: true
+  tty: true
+  restart: always
+  networks:
+   - mynet
+  ports: 
+   - "4000:4000"
+  working_dir: /app
+  environment:
+    MONGODB_URI: mongodb://mongoserver:27017
+    DB_NAME: princelist
+  volumes:
+    - /home/app/file:/app:z  
+  command: node app.js 
+
+networks:
+ mynet:
+  driver: bridge
+
+volumes:
+ mongo_db:
+  driver: local
