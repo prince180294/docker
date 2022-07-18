@@ -17,7 +17,7 @@ services:
 
  node:
   container_name: node_container
-  image: nodeapp:v4
+  image: docker.io/prince180294/nodeapp:latest
   stdin_open: true
   tty: true
   restart: always
