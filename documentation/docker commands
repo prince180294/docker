@@ -1,0 +1,59 @@
+Creating Images:
+
+images can be created by 2 ways:
+1. committing containers
+2. Dockerfile
+
+Step1 :	committing containers:
+
+check all container present in your system.
+docker ps -a
+if there are no containers present in your system then you can pull image 
+from docker registry and run that image to make a container
+for eg:
+#docker run centos:latest
+
+then check for available containers using: 
+#docker ps -a
+
+not down containerid as it will used for creating your very own ubuntu image
+use command : 
+#docker commit containerid
+
+above command will create a image which you can check by running command:
+#docker images
+
+currently this image has no name, only image id is present. use "tag" command as shown below to name container
+
+#docker tag imageid centos:v1
+ 
+now run your conatiner using command to make a container of your image:
+#docker run centos:v1
+
+
+note:
+we can add various parameters during command execution to define properties of container. refer docker documentation for more info:
+
+
+Step2.  Dockerfile:
+
+dockerfile is most commonly used method for creating images. we define 
+various specifications in our docker to define properties of resulting image.
+for eg:
+
+#vi dockerfile
+FROM centos
+WORKDIR /app
+COPY /home/user/app .
+RUN yum update -y
+
+from: will help in pulling centos image
+workdir: set our current working directory
+copy : copies our files from docker host to docker image
+RUN : run terminal commands to install packages.
+save above file and run command docker build to build dockerfile
+#docker build dockerfile
+#docker images
+
+you will see docker image is created with docker file. now follow same steps to name the image as followed in step1
+
