@@ -1,4 +1,4 @@
-version : '2.5'
+version : '3'
 services:
  mongoserver:
   container_name: db_container
@@ -10,14 +10,14 @@ services:
     - 27017:27017
   volumes:
     - mongo_db:/data/db
-    - /home/app/db:/home:z
+    - .app/db:/home:z
   networks: 
     - mynet   
   command: mongod  
 
  node:
   container_name: node_container
-  image: prince180294/nodeapp:latest
+  image: nodeapp:v4
   stdin_open: true
   tty: true
   restart: always
@@ -30,8 +30,8 @@ services:
     MONGODB_URI: mongodb://mongoserver:27017
     DB_NAME: princelist
   volumes:
-    - /home/app/file:/app:z  
-  command: node app.js 
+    - ./file:/app:z  
+  command: sh -c "/app/npmscript.sh"
 
 networks:
  mynet:
