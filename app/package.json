@@ -1,0 +1,16 @@
+{
+  "name": "nodeapp",
+  "version": "1.0.0",
+  "description": "nodejs and mongodb connection",
+  "main": "app.js",
+  "scripts": {
+    "start": "node app.js"
+  },
+  "author": "prince",
+  "license": "ISC",
+  "dependencies": {
+    "mongoose": "^5.13.14",
+    "npm": "^8.14.0"
+  }
+}
+
