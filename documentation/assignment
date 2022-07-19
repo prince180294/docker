@@ -25,3 +25,7 @@ we can see this data is populated further as we run command "node app.js".
 
 you can also tally by number of documents in collection by:
 db.todolistmodels.count()
+
+you will also find 2 script for various operations on containers:
+1. run.sh   : start both containers
+2. stop.sh  : stop both containers and remove images
